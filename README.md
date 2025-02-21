@@ -27,7 +27,6 @@ The Task Management System is a robust and user-friendly application designed to
 ### Prerequisites
 - PHP 8.0 or higher
 - Composer
-- Node.js and npm
 
 ### Installation
 
@@ -57,10 +56,6 @@ The Task Management System is a robust and user-friendly application designed to
    - Start the backend server:
      ```bash
      php artisan serve
-     ```
-   - Start the frontend server:
-     ```bash
-     npm start
      ```
 
 ## API Endpoints
