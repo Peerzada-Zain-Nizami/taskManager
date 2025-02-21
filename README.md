@@ -33,7 +33,7 @@ The Task Management System is a robust and user-friendly application designed to
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/your-repository.git
+   git clone https://github.com/Peerzada-Zain-Nizami/taskManage.git
    cd your-repository
    ```
 
