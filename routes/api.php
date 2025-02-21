@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Password;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +32,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('tasks/{id}/complete', [TaskController::class, 'markAsCompleted']);
     Route::post('logout', [AuthController::class, 'logout']);
 });
+
+Route::post('forgot-password', [AuthController::class, 'forgotPassword']);
+Route::post('reset-password', [AuthController::class, 'resetPassword'])->name('password.reset');
