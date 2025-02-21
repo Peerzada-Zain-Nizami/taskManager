@@ -14,7 +14,6 @@ The Task Management System is a robust and user-friendly application designed to
   - **Mark Tasks as Completed**: Users can mark tasks as completed to keep track of their progress.
 - **API Documentation**: Comprehensive API documentation provided via a Postman collection or README file.
 - **Server-Side Rendering (SSR) and Static Site Generation (SSG)**: Utilized in the Next.js frontend for optimal performance and SEO.
-- **Containerization**: Both the backend and frontend applications are containerized using Docker for easy deployment and scalability.
 
 ## Technologies Used
 - **Backend**: Laravel 9, Laravel Sanctum
