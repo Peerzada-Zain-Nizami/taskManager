@@ -1,6 +1,4 @@
-Sure! Here’s a well-formatted `README.md` file for your Task Management System project, including setup instructions:
 
-```markdown
 # Task Management System
 
 ## Overview
@@ -21,8 +19,7 @@ The Task Management System is a robust and user-friendly application designed to
 ## Technologies Used
 - **Backend**: Laravel 9, Laravel Sanctum
 - **Frontend**: Next.js
-- **Database**: MySQL (or any other preferred database)
-- **Containerization**: Docker
+- **Database**: MySQL
 - **Authentication**: Laravel Sanctum
 - **API Documentation**: Postman
 
@@ -32,7 +29,6 @@ The Task Management System is a robust and user-friendly application designed to
 - PHP 8.0 or higher
 - Composer
 - Node.js and npm
-- Docker (optional, for containerization)
 
 ### Installation
 
