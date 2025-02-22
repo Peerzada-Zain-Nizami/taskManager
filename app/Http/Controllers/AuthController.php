@@ -96,7 +96,11 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+            $errors = [];
+            foreach ($validator->errors()->all() as $error) {
+                $errors[] = $error;
+            }
+            return response()->json(['errors' => $errors], 422);
         }
 
         $status = Password::sendResetLink(
@@ -122,7 +126,11 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+            $errors = [];
+            foreach ($validator->errors()->all() as $error) {
+                $errors[] = $error;
+            }
+            return response()->json(['errors' => $errors], 422);
         }
 
         $status = Password::reset(
