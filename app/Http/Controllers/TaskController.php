@@ -37,10 +37,13 @@ class TaskController extends Controller
             'due_date' => 'Due Date',
         ]);
         if ($validator->fails()) {
+            $errors = [];
+            foreach ($validator->errors()->all() as $error) {
+                $errors[] = $error;
+            }
             return response()->json([
-                // 'status' => "fail",
-                'errors' => $validator->errors(),
-            ]);
+                'errors' => $errors,
+            ], 400);
         } else {
             $task = new Task;
             $task->title = $request->title;
@@ -87,10 +90,13 @@ class TaskController extends Controller
             'due_date' => 'Due Date',
         ]);
         if ($validator->fails()) {
+            $errors = [];
+            foreach ($validator->errors()->all() as $error) {
+                $errors[] = $error;
+            }
             return response()->json([
-                // 'status' => "fail",
-                'errors' => $validator->errors(),
-            ]);
+                'errors' => $errors,
+            ], 400);
         } else {
 
             $task = Task::findOrFail($id);
