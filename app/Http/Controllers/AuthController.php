@@ -29,12 +29,11 @@ class AuthController extends Controller
             ]);
         } else {
 
-            User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-            ]);
-
+            $user = new User;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->save();
             return response()->json(['message' => 'User registered successfully'], 201);
         }
     }
