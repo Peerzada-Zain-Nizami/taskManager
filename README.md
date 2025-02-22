@@ -1,6 +1,4 @@
-Sure! Here’s a well-formatted `README.md` file for your Task Management System project, including setup instructions:
 
-```markdown
 # Task Management System
 
 ## Overview
@@ -16,13 +14,11 @@ The Task Management System is a robust and user-friendly application designed to
   - **Mark Tasks as Completed**: Users can mark tasks as completed to keep track of their progress.
 - **API Documentation**: Comprehensive API documentation provided via a Postman collection or README file.
 - **Server-Side Rendering (SSR) and Static Site Generation (SSG)**: Utilized in the Next.js frontend for optimal performance and SEO.
-- **Containerization**: Both the backend and frontend applications are containerized using Docker for easy deployment and scalability.
 
 ## Technologies Used
 - **Backend**: Laravel 9, Laravel Sanctum
 - **Frontend**: Next.js
-- **Database**: MySQL (or any other preferred database)
-- **Containerization**: Docker
+- **Database**: MySQL
 - **Authentication**: Laravel Sanctum
 - **API Documentation**: Postman
 
@@ -31,14 +27,12 @@ The Task Management System is a robust and user-friendly application designed to
 ### Prerequisites
 - PHP 8.0 or higher
 - Composer
-- Node.js and npm
-- Docker (optional, for containerization)
 
 ### Installation
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/your-repository.git
+   git clone https://github.com/Peerzada-Zain-Nizami/taskManager.git
    cd your-repository
    ```
 
@@ -62,10 +56,6 @@ The Task Management System is a robust and user-friendly application designed to
    - Start the backend server:
      ```bash
      php artisan serve
-     ```
-   - Start the frontend server:
-     ```bash
-     npm start
      ```
 
 ## API Endpoints
