@@ -108,7 +108,7 @@ class AuthController extends Controller
             return response()->json(['errors' => $errors], 422);
         }
 
-        $status = Password::sendResetLink(
+        $status = Password::broker()->sendResetLink(
             $request->only('email'),
             function ($user, $token) {
                 $user->notify(new ResetPassword($token));

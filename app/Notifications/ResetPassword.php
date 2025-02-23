@@ -21,7 +21,7 @@ class ResetPassword extends Notification
 
     public function toMail($notifiable)
     {
-        $url = url('/auth/reset-password?token=' . $this->token . '&email=' . urlencode($notifiable->email));
+        $url = 'https://taskhive-steel.vercel.app/auth/reset-password?token=' . $this->token . '&email=' . urlencode($notifiable->email);
 
         return (new MailMessage)
             ->subject('Reset Password Notification')
