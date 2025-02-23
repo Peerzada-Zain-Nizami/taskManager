@@ -126,7 +126,7 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|exists:users,email',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:8',
         ]);
 
         if ($validator->fails()) {
@@ -138,7 +138,7 @@ class AuthController extends Controller
         }
 
         $status = Password::reset(
-            $request->only('email', 'password', 'password_confirmation', 'token'),
+            $request->only('email', 'password', 'token'),
             function ($user, $password) {
                 $user->forceFill([
                     'password' => Hash::make($password)
