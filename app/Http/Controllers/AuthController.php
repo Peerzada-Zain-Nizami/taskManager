@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Password;
+use App\Notifications\ResetPassword;
 
 class AuthController extends Controller
 {
@@ -108,7 +109,10 @@ class AuthController extends Controller
         }
 
         $status = Password::sendResetLink(
-            $request->only('email')
+            $request->only('email'),
+            function ($user, $token) {
+                $user->notify(new ResetPassword($token));
+            }
         );
 
         return $status === Password::RESET_LINK_SENT
