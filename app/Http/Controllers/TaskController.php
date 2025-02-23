@@ -13,7 +13,7 @@ class TaskController extends Controller
     //
     public function index()
     {
-        $tasks = Task::paginate(10);
+        $tasks = Auth::user()->tasks()->paginate(10);
         return response()->json($tasks);
     }
 
@@ -45,14 +45,7 @@ class TaskController extends Controller
                 'errors' => $errors,
             ], 400);
         } else {
-            $task = new Task;
-            $task->title = $request->title;
-            $task->description = $request->description;
-            $task->status = $request->status;
-            $task->due_date = $request->due_date;
-            $task->user_id = Auth::id();
-            $task->save();
-
+            $task = Auth::user()->tasks()->create($request->all());
             return response()->json($task, 201);
         }
     }
@@ -65,7 +58,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $task = Task::findOrFail($id);
+        $task = Auth::user()->tasks()->findOrFail($id);
         return response()->json($task);
     }
     /**
@@ -77,37 +70,9 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $validator = Validator::make($request->all(), [
-            'title' => 'required|string|max:255',
-            'description' => 'string|nullable',
-            'status' => 'string|nullable',
-            'due_date' => 'date|nullable',
-        ], [], [
-            'title' => 'Title',
-            'description' => 'Description',
-            'status' => 'Status',
-            'due_date' => 'Due Date',
-        ]);
-        if ($validator->fails()) {
-            $errors = [];
-            foreach ($validator->errors()->all() as $error) {
-                $errors[] = $error;
-            }
-            return response()->json([
-                'errors' => $errors,
-            ], 400);
-        } else {
-
-            $task = Task::findOrFail($id);
-            $task->title = $request->title;
-            $task->description = $request->description;
-            $task->status = $request->status;
-            $task->due_date = $request->due_date;
-            $task->update();
-
-            return response()->json($task, 201);
-        }
+        $task = Auth::user()->tasks()->findOrFail($id);
+        $task->update($request->all());
+        return response()->json($task, 201);
     }
 
     /**
@@ -118,14 +83,14 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        $task = Task::findOrFail($id);
+        $task = Auth::user()->tasks()->findOrFail($id);
         $task->delete();
         return response()->json(['message' => 'Task deleted successfully']);
     }
 
     public function markAsCompleted($id)
     {
-        $task = Task::findOrFail($id);
+        $task = Auth::user()->tasks()->findOrFail($id);
         $task->update(['status' => 'completed']);
         return response()->json(['message' => 'Task marked as completed']);
     }
