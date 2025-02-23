@@ -10,12 +10,30 @@ use Illuminate\Support\Facades\Validator;
 
 class TaskController extends Controller
 {
-    //
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Auth::user()->tasks()->paginate(10);
+        $userId = Auth::id();
+        $query = Task::where('user_id', $userId);
+
+        // Search by keyword in title
+        if ($request->has('keyword')) {
+            $query->where('title', 'like', '%' . $request->keyword . '%');
+        }
+
+        // Filter by status
+        if ($request->has('status')) {
+            $query->where('status', $request->status);
+        }
+
+        // Order by latest
+        $query->orderBy('created_at', 'desc');
+
+        // Paginate results
+        $tasks = $query->paginate(10);
+
         return response()->json($tasks);
     }
+
 
     /**
      * Store a newly created task in storage.
@@ -93,5 +111,20 @@ class TaskController extends Controller
         $task = Auth::user()->tasks()->findOrFail($id);
         $task->update(['status' => 'completed']);
         return response()->json(['message' => 'Task marked as completed']);
+    }
+
+    public function userTasks()
+    {
+        $userId = Auth::id();
+
+        $completedTasksCount = Task::where('user_id', $userId)->where('status', 'completed')->count();
+        $pendingTasksCount = Task::where('user_id', $userId)->where('status', '!=', 'completed')->count();
+        $allTasksCount = Task::where('user_id', $userId)->count();
+
+        return response()->json([
+            'completed_tasks_count' => $completedTasksCount,
+            'pending_tasks_count' => $pendingTasksCount,
+            'all_tasks_count' => $allTasksCount,
+        ]);
     }
 }
